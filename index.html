@@ -1,41 +1,2488 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Learning Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyHub V4</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    line-height:1.6;
+    transition:.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:#eee;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    margin-top:5px;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-around;
+    background:white;
+    box-shadow:0 2px 10px #0002;
+}
+
+.dark nav{
+    background:#1f2937;
+}
+
+nav button{
+    border:0;
+    background:none;
+    color:inherit;
+    padding:13px 7px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    margin:15px 0;
+    border-radius:16px;
+    box-shadow:0 4px 15px #0001;
+}
+
+.dark .card{
+    background:#1f2937;
+}
+
+.card h2{
+    color:#2563eb;
+    margin-bottom:12px;
+}
+
+.dark .card h2{
+    color:#60a5fa;
+}
+
+.card h3{
+    margin-top:22px;
+    margin-bottom:8px;
+}
+
+.subject{
+    width:100%;
+    padding:18px;
+    margin:8px 0;
+    border:0;
+    border-radius:12px;
+    background:#eef2ff;
+    color:#1e3a8a;
+    text-align:left;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.dark .subject{
+    background:#293548;
+    color:#93c5fd;
+}
+
+.subject:hover{
+    transform:translateY(-2px);
+}
+
+.chapter{
+    background:#f8fafc;
+    padding:17px;
+    margin:10px 0;
+    border-radius:12px;
+    border-left:5px solid #2563eb;
+    cursor:pointer;
+}
+
+.dark .chapter{
+    background:#293548;
+}
+
+.chapter:hover{
+    transform:translateX(3px);
+}
+
+.primary{
+    width:100%;
+    border:0;
+    padding:14px;
+    margin-top:12px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.secondary{
+    background:#555;
+}
+
+.hidden{
+    display:none!important;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+    margin:10px 0;
+}
+
+.dark input{
+    background:#293548;
+    color:white;
+    border-color:#555;
+}
+
+.formula{
+    background:#eef2ff;
+    padding:16px;
+    margin:14px 0;
+    border-radius:10px;
+    text-align:center;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.dark .formula{
+    background:#293548;
+}
+
+.note{
+    background:#fff7ed;
+    padding:16px;
+    border-radius:10px;
+    margin:16px 0;
+}
+
+.dark .note{
+    background:#3a3024;
+}
+
+.searchResult{
+    padding:15px;
+    margin:8px 0;
+    border-radius:10px;
+    background:#eef2ff;
+    cursor:pointer;
+}
+
+.dark .searchResult{
+    background:#293548;
+}
+
+.progress{
+    height:12px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin:10px 0;
+}
+
+.progressBar{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:.4s;
+}
+
+.quizOption{
+    display:block;
+    width:100%;
+    padding:15px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+    background:white;
+    text-align:left;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.dark .quizOption{
+    background:#293548;
+    color:white;
+    border-color:#555;
+}
+
+.correct{
+    background:#bbf7d0!important;
+    border-color:#16a34a!important;
+}
+
+.wrong{
+    background:#fecaca!important;
+    border-color:#dc2626!important;
+}
+
+.quizTop{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.score{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#dbeafe;
+    color:#1d4ed8;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.dark .badge{
+    background:#293548;
+    color:#93c5fd;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+.small{
+    font-size:14px;
+    color:#777;
+}
+
+.dark .small{
+    color:#aaa;
+}
+
+ul,ol{
+    margin:10px 0 10px 25px;
+}
+</style>
 </head>
 
 <body>
 
-    <h1>Welcome to My Learning Website 📚</h1>
+<header>
+<h1>📚 StudyHub</h1>
+<p>Learn • Practice • Improve</p>
+</header>
 
-    <p>Learn something new every day!</p>
+<nav>
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('subjects')">📚 Subjects</button>
+<button onclick="startQuiz()">🧠 Quiz</button>
+<button onclick="toggleDark()">🌙</button>
+</nav>
 
-    <hr>
 
-    <h2>Subjects</h2>
+<!-- HOME -->
 
-    <ul>
-        <li>Mathematics</li>
-        <li>Physics</li>
-        <li>Chemistry</li>
-        <li>Computer Science</li>
-    </ul>
+<section id="home" class="container">
 
-    <h2>My Goal 🎯</h2>
+<div class="card">
+<h2>👋 Welcome to StudyHub V4</h2>
 
-    <p>
-        My goal is to improve my knowledge and learn new skills.
-    </p>
+<p>
+Study different subjects, search topics, read detailed
+notes and test your knowledge with MCQs.
+</p>
 
-    <a href="subjects.html">
-    <button>Start Learning</button>
-    </a>
+<button class="primary" onclick="showPage('subjects')">
+🚀 Start Learning
+</button>
+</div>
+
+
+<div class="card">
+
+<h2>🔎 Smart Search</h2>
+
+<p class="small">
+Search by topic name, keyword or concept.
+For example: Newton, determinant, HTML, force, atom...
+</p>
+
+<input
+id="searchBox"
+type="text"
+placeholder="Search any topic..."
+oninput="searchTopics()">
+
+<div id="searchResults"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Your Progress</h2>
+
+<p>
+Completed:
+<b id="completedCount">0</b>
+/
+<b id="totalCount">40</b>
+chapters
+</p>
+
+<div class="progress">
+<div id="progressBar" class="progressBar"></div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+
+<section id="subjects" class="container hidden">
+
+<div class="card">
+
+<h2>📚 Subjects</h2>
+
+<button class="subject" onclick="showPage('math')">
+➗ Mathematics
+<br>
+<span class="small">10 topics</span>
+</button>
+
+<button class="subject" onclick="showPage('physics')">
+⚡ Physics
+<br>
+<span class="small">10 topics</span>
+</button>
+
+<button class="subject" onclick="showPage('chemistry')">
+🧪 Chemistry
+<br>
+<span class="small">10 topics</span>
+</button>
+
+<button class="subject" onclick="showPage('computer')">
+💻 Computer Science
+<br>
+<span class="small">10 topics</span>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- MATH -->
+
+<section id="math" class="container hidden">
+<div class="card">
+
+<h2>➗ Mathematics</h2>
+
+<div id="mathTopics"></div>
+
+<button class="primary secondary"
+onclick="showPage('subjects')">
+⬅ Back
+</button>
+
+</div>
+</section>
+
+
+<!-- PHYSICS -->
+
+<section id="physics" class="container hidden">
+<div class="card">
+
+<h2>⚡ Physics</h2>
+
+<div id="physicsTopics"></div>
+
+<button class="primary secondary"
+onclick="showPage('subjects')">
+⬅ Back
+</button>
+
+</div>
+</section>
+
+
+<!-- CHEMISTRY -->
+
+<section id="chemistry" class="container hidden">
+<div class="card">
+
+<h2>🧪 Chemistry</h2>
+
+<div id="chemistryTopics"></div>
+
+<button class="primary secondary"
+onclick="showPage('subjects')">
+⬅ Back
+</button>
+
+</div>
+</section>
+
+
+<!-- COMPUTER -->
+
+<section id="computer" class="container hidden">
+<div class="card">
+
+<h2>💻 Computer Science</h2>
+
+<div id="computerTopics"></div>
+
+<button class="primary secondary"
+onclick="showPage('subjects')">
+⬅ Back
+</button>
+
+</div>
+</section>
+
+
+<!-- CHAPTER -->
+
+<section id="chapter" class="container hidden">
+
+<div class="card">
+
+<h2 id="chapterTitle"></h2>
+
+<div id="chapterContent"></div>
+
+<button class="primary"
+onclick="completeChapter()">
+✅ Mark as Completed
+</button>
+
+<button class="primary secondary"
+onclick="showPage('subjects')">
+⬅ Back to Subjects
+</button>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="container hidden">
+
+<div class="card">
+
+<div class="quizTop">
+<span id="questionNumber"></span>
+<span id="quizScore"></span>
+</div>
+
+<h2 id="question"></h2>
+
+<div id="options"></div>
+
+<p id="feedback"></p>
+
+<button
+id="nextButton"
+class="primary hidden"
+onclick="nextQuestion()">
+Next Question ➡
+</button>
+
+<div id="quizResult"></div>
+
+</div>
+
+</section>
+
+
+<footer>
+<p>📚 StudyHub V4</p>
+<p>Made with HTML, CSS & JavaScript</p>
+</footer>
+
 
 <script>
-function startLearning() {
-    alert("Welcome! Let's start learning 📚");
+
+/* =========================================
+   40 TOPICS
+========================================= */
+
+const topics=[
+
+/* MATHEMATICS 1-10 */
+
+{
+id:"sets",
+subject:"math",
+title:"📘 Sets",
+keywords:"set sets union intersection mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A set is a well-defined collection of objects.
+The objects belonging to a set are called elements.
+Sets are usually represented using capital letters.
+</p>
+
+<div class="formula">
+A = {1,2,3,4}
+</div>
+
+<h3>Types of Sets</h3>
+<ul>
+<li>Empty set</li>
+<li>Finite set</li>
+<li>Infinite set</li>
+<li>Singleton set</li>
+<li>Universal set</li>
+</ul>
+
+<h3>Union</h3>
+<p>
+The union of two sets contains all elements belonging
+to either set.
+</p>
+
+<div class="formula">
+A ∪ B
+</div>
+
+<h3>Intersection</h3>
+<p>
+The intersection contains elements common to both sets.
+</p>
+
+<div class="formula">
+A ∩ B
+</div>
+
+<div class="note">
+💡 Remember: Union means combine, while intersection
+means common elements.
+</div>
+`
+},
+
+{
+id:"relations",
+subject:"math",
+title:"🔗 Relations & Functions",
+keywords:"relation function domain range mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A relation describes a connection between elements of
+two sets. A function is a special type of relation where
+each input has exactly one output.
+</p>
+
+<h3>Domain</h3>
+<p>
+The domain is the set of possible input values.
+</p>
+
+<h3>Range</h3>
+<p>
+The range is the set of output values produced by the function.
+</p>
+
+<div class="formula">
+f(x) = x + 2
+</div>
+
+<p>
+If x = 3, then f(3) = 5.
+</p>
+
+<div class="note">
+💡 A function assigns exactly one output to every valid input.
+</div>
+`
+},
+
+{
+id:"trigonometry",
+subject:"math",
+title:"📐 Trigonometry",
+keywords:"sin cos tan trigonometry angles identities",
+content:`
+<h3>Introduction</h3>
+<p>
+Trigonometry studies relationships between angles and
+sides of triangles. It is widely used in mathematics,
+physics, engineering and astronomy.
+</p>
+
+<h3>Basic Ratios</h3>
+
+<div class="formula">
+sin θ = Opposite / Hypotenuse
+</div>
+
+<div class="formula">
+cos θ = Adjacent / Hypotenuse
+</div>
+
+<div class="formula">
+tan θ = Opposite / Adjacent
+</div>
+
+<h3>Important Identity</h3>
+
+<div class="formula">
+sin²θ + cos²θ = 1
+</div>
+
+<div class="formula">
+1 + tan²θ = sec²θ
+</div>
+
+<div class="formula">
+1 + cot²θ = cosec²θ
+</div>
+
+<h3>Standard Values</h3>
+<p>
+Important angles include 0°, 30°, 45°, 60° and 90°.
+Learning their standard values is useful for solving
+many problems quickly.
+</p>
+
+<div class="note">
+💡 Draw a triangle whenever you are confused about
+the trigonometric ratios.
+</div>
+`
+},
+
+{
+id:"matrices",
+subject:"math",
+title:"🔢 Matrices",
+keywords:"matrix matrices rows columns determinant mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A matrix is a rectangular arrangement of numbers,
+symbols or expressions in rows and columns.
+</p>
+
+<div class="formula">
+A = [ 1  2 ]<br>
+    [ 3  4 ]
+</div>
+
+<h3>Order of a Matrix</h3>
+<p>
+If a matrix has m rows and n columns, its order is
+m × n.
+</p>
+
+<h3>Types</h3>
+<ul>
+<li>Row matrix</li>
+<li>Column matrix</li>
+<li>Square matrix</li>
+<li>Zero matrix</li>
+<li>Diagonal matrix</li>
+<li>Identity matrix</li>
+</ul>
+
+<h3>Matrix Addition</h3>
+<p>
+Matrices of the same order can be added by adding
+corresponding elements.
+</p>
+
+<div class="note">
+💡 Always check the order before adding or subtracting matrices.
+</div>
+`
+},
+
+{
+id:"determinants",
+subject:"math",
+title:"🧮 Determinants",
+keywords:"determinant determinant 2x2 3x3 matrix mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A determinant is a scalar value associated with a square
+matrix. It is useful in solving equations, finding inverses
+and studying properties of matrices.
+</p>
+
+<h3>2 × 2 Determinant</h3>
+
+<div class="formula">
+| a  b |<br>
+| c  d |<br><br>
+= ad - bc
+</div>
+
+<h3>Example</h3>
+
+<div class="formula">
+| 2  3 |<br>
+| 4  5 |<br><br>
+= (2×5) - (3×4)<br>
+= 10 - 12<br>
+= -2
+</div>
+
+<h3>3 × 3 Determinant</h3>
+<p>
+A 3 × 3 determinant can be evaluated using expansion
+along a row or column.
+</p>
+
+<div class="note">
+💡 For inverse of a matrix, the determinant must be non-zero.
+</div>
+`
+},
+
+{
+id:"complex",
+subject:"math",
+title:"🔷 Complex Numbers",
+keywords:"complex numbers i imaginary real mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A complex number contains a real part and an imaginary part.
+</p>
+
+<div class="formula">
+z = a + ib
+</div>
+
+<p>
+Here a is the real part and b is the coefficient of the
+imaginary unit i.
+</p>
+
+<div class="formula">
+i² = -1
+</div>
+
+<h3>Example</h3>
+
+<div class="formula">
+3 + 4i
+</div>
+
+<p>
+The real part is 3 and the imaginary part is 4.
+</p>
+
+<div class="note">
+💡 Complex numbers are useful when equations have no
+real-number solutions.
+</div>
+`
+},
+
+{
+id:"limits",
+subject:"math",
+title:"📈 Limits",
+keywords:"limit continuity calculus mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+A limit describes the value that a function approaches
+as its input approaches a particular value.
+</p>
+
+<div class="formula">
+lim x→a f(x)
+</div>
+
+<p>
+Limits are fundamental to calculus and are closely
+connected with continuity and derivatives.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+lim x→2 (x + 3) = 5
+</div>
+
+<p>
+For simple continuous functions, direct substitution
+can often be used.
+</p>
+
+<div class="note">
+💡 Limits describe approaching a value, not necessarily
+reaching it.
+</div>
+`
+},
+
+{
+id:"derivatives",
+subject:"math",
+title:"📊 Differentiation",
+keywords:"derivative differentiation calculus dx mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+Differentiation is the process of finding the derivative
+of a function. The derivative represents the rate of change.
+</p>
+
+<div class="formula">
+d/dx(xⁿ) = nxⁿ⁻¹
+</div>
+
+<h3>Examples</h3>
+
+<div class="formula">
+d/dx(x²) = 2x
+</div>
+
+<div class="formula">
+d/dx(x³) = 3x²
+</div>
+
+<div class="formula">
+d/dx(sin x) = cos x
+</div>
+
+<div class="formula">
+d/dx(cos x) = -sin x
+</div>
+
+<div class="note">
+💡 Power rule: multiply by the power and reduce
+the power by one.
+</div>
+`
+},
+
+{
+id:"integration",
+subject:"math",
+title:"∫ Integration",
+keywords:"integration integral calculus mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+Integration is an important operation in calculus.
+It can be viewed as the reverse process of differentiation.
+</p>
+
+<div class="formula">
+∫ xⁿ dx = xⁿ⁺¹/(n+1) + C
+</div>
+
+<p>
+This formula applies when n is not equal to -1.
+C represents the constant of integration.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+∫ x² dx = x³/3 + C
+</div>
+
+<div class="note">
+💡 Differentiating an integral expression can help
+you check whether your answer is correct.
+</div>
+`
+},
+
+{
+id:"probability",
+subject:"math",
+title:"🎲 Probability",
+keywords:"probability chance events mathematics",
+content:`
+<h3>Introduction</h3>
+<p>
+Probability is the mathematical measurement of how likely
+an event is to occur.
+</p>
+
+<div class="formula">
+P(E) = Favorable outcomes / Total outcomes
+</div>
+
+<h3>Example</h3>
+<p>
+For a fair coin, the probability of getting heads is:
+</p>
+
+<div class="formula">
+P(H) = 1/2
+</div>
+
+<p>
+Probability values lie between 0 and 1.
+</p>
+
+<div class="note">
+💡 Probability 0 means impossible and probability 1
+means certain.
+</div>
+`
+},
+
+
+/* PHYSICS 11-20 */
+
+{
+id:"units",
+subject:"physics",
+title:"📏 Units & Measurements",
+keywords:"units measurement SI physics",
+content:`
+<h3>Introduction</h3>
+<p>
+Measurement is the comparison of an unknown physical
+quantity with a known standard quantity.
+</p>
+
+<h3>SI System</h3>
+<ul>
+<li>Length → metre</li>
+<li>Mass → kilogram</li>
+<li>Time → second</li>
+<li>Electric current → ampere</li>
+<li>Temperature → kelvin</li>
+</ul>
+
+<h3>Importance</h3>
+<p>
+Standard units allow scientists around the world to
+communicate measurements consistently.
+</p>
+
+<div class="note">
+💡 Always write the unit with a physical measurement.
+</div>
+`
+},
+
+{
+id:"motion",
+subject:"physics",
+title:"🏃 Motion",
+keywords:"motion distance displacement speed velocity acceleration physics",
+content:`
+<h3>Introduction</h3>
+<p>
+Motion is a change in position with respect to time.
+</p>
+
+<div class="formula">
+Speed = Distance / Time
+</div>
+
+<div class="formula">
+Velocity = Displacement / Time
+</div>
+
+<div class="formula">
+a = (v-u)/t
+</div>
+
+<h3>Equations of Motion</h3>
+
+<div class="formula">
+v = u + at
+</div>
+
+<div class="formula">
+s = ut + ½at²
+</div>
+
+<div class="formula">
+v² = u² + 2as
+</div>
+
+<div class="note">
+💡 Distance is scalar while displacement is vector.
+</div>
+`
+},
+
+{
+id:"laws",
+subject:"physics",
+title:"⚖️ Newton's Laws",
+keywords:"Newton laws force inertia physics",
+content:`
+<h3>First Law</h3>
+<p>
+An object remains at rest or in uniform motion unless
+acted upon by an external unbalanced force.
+</p>
+
+<h3>Second Law</h3>
+
+<div class="formula">
+F = ma
+</div>
+
+<p>
+Force equals mass multiplied by acceleration.
+</p>
+
+<h3>Third Law</h3>
+<p>
+For every action there is an equal and opposite reaction.
+</p>
+
+<div class="note">
+💡 Newton's laws are fundamental to classical mechanics.
+</div>
+`
+},
+
+{
+id:"gravitation",
+subject:"physics",
+title:"🌍 Gravitation",
+keywords:"gravity gravitation g mass force physics",
+content:`
+<h3>Introduction</h3>
+<p>
+Gravitation is the force of attraction between masses.
+</p>
+
+<div class="formula">
+F = Gm₁m₂/r²
+</div>
+
+<p>
+G is the universal gravitational constant.
+</p>
+
+<h3>Acceleration Due to Gravity</h3>
+
+<div class="formula">
+g ≈ 9.8 m/s²
+</div>
+
+<p>
+Near Earth's surface, objects experience acceleration
+due to Earth's gravity.
+</p>
+`
+},
+
+{
+id:"work",
+subject:"physics",
+title:"💪 Work",
+keywords:"work force displacement physics",
+content:`
+<h3>Definition</h3>
+<p>
+Work is done when a force causes displacement.
+</p>
+
+<div class="formula">
+W = F s cos θ
+</div>
+
+<p>
+The angle between force and displacement determines
+how much of the force contributes to work.
+</p>
+
+<div class="note">
+💡 If displacement is zero, mechanical work is zero.
+</div>
+`
+},
+
+{
+id:"energy",
+subject:"physics",
+title:"🔋 Energy",
+keywords:"energy kinetic potential work physics",
+content:`
+<h3>Energy</h3>
+<p>
+Energy is the capacity to do work.
+</p>
+
+<h3>Kinetic Energy</h3>
+
+<div class="formula">
+K.E. = ½mv²
+</div>
+
+<h3>Potential Energy</h3>
+
+<div class="formula">
+P.E. = mgh
+</div>
+
+<p>
+Energy can change from one form to another while
+the total energy of an isolated system remains conserved.
+</p>
+`
+},
+
+{
+id:"momentum",
+subject:"physics",
+title:"🚀 Momentum",
+keywords:"momentum impulse mass velocity physics",
+content:`
+<h3>Definition</h3>
+<p>
+Momentum is the product of mass and velocity.
+</p>
+
+<div class="formula">
+p = mv
+</div>
+
+<p>
+Momentum is a vector quantity because velocity is a vector.
+</p>
+
+<h3>Conservation</h3>
+<p>
+In an isolated system, total momentum remains constant
+when no external net force acts on the system.
+</p>
+`
+},
+
+{
+id:"heat",
+subject:"physics",
+title:"🌡️ Heat & Temperature",
+keywords:"heat temperature thermal physics",
+content:`
+<h3>Temperature</h3>
+<p>
+Temperature indicates the thermal state of a body.
+</p>
+
+<h3>Heat</h3>
+<p>
+Heat is energy transferred because of a temperature difference.
+</p>
+
+<div class="formula">
+Q = mcΔT
+</div>
+
+<p>
+Here m is mass, c is specific heat capacity and ΔT
+is the change in temperature.
+</p>
+`
+},
+
+{
+id:"waves",
+subject:"physics",
+title:"🌊 Waves",
+keywords:"waves frequency wavelength amplitude physics",
+content:`
+<h3>Introduction</h3>
+<p>
+A wave is a disturbance that transfers energy from one
+place to another.
+</p>
+
+<h3>Important Terms</h3>
+<ul>
+<li>Amplitude</li>
+<li>Wavelength</li>
+<li>Frequency</li>
+<li>Time period</li>
+</ul>
+
+<div class="formula">
+v = fλ
+</div>
+
+<p>
+Wave speed equals frequency multiplied by wavelength.
+</p>
+`
+},
+
+{
+id:"electricity",
+subject:"physics",
+title:"⚡ Electricity",
+keywords:"current voltage resistance ohm electricity physics",
+content:`
+<h3>Electric Current</h3>
+<p>
+Electric current is the rate of flow of electric charge.
+</p>
+
+<div class="formula">
+I = Q/t
+</div>
+
+<h3>Ohm's Law</h3>
+
+<div class="formula">
+V = IR
+</div>
+
+<p>
+V is voltage, I is current and R is resistance.
+</p>
+
+<div class="note">
+💡 Resistance opposes the flow of electric current.
+</div>
+`
+},
+
+
+/* CHEMISTRY 21-30 */
+
+{
+id:"atom",
+subject:"chemistry",
+title:"⚛️ Structure of Atom",
+keywords:"atom proton neutron electron chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+An atom is the basic unit of an element.
+It contains a nucleus and electrons around it.
+</p>
+
+<ul>
+<li>Proton → positive</li>
+<li>Neutron → neutral</li>
+<li>Electron → negative</li>
+</ul>
+
+<div class="formula">
+Atomic Number = Number of Protons
+</div>
+
+<div class="formula">
+Mass Number = Protons + Neutrons
+</div>
+`
+},
+
+{
+id:"periodic",
+subject:"chemistry",
+title:"🧩 Periodic Table",
+keywords:"periodic table elements groups periods chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+The periodic table organizes chemical elements according
+to their atomic number and recurring properties.
+</p>
+
+<h3>Groups</h3>
+<p>
+Vertical columns are called groups.
+Elements in the same group often have similar chemical properties.
+</p>
+
+<h3>Periods</h3>
+<p>
+Horizontal rows are called periods.
+</p>
+
+<div class="note">
+💡 The modern periodic table is arranged by increasing atomic number.
+</div>
+`
+},
+
+{
+id:"bonding",
+subject:"chemistry",
+title:"🔗 Chemical Bonding",
+keywords:"bond ionic covalent chemical bonding chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+Chemical bonding is the attraction that holds atoms or ions
+together in a substance.
+</p>
+
+<h3>Ionic Bond</h3>
+<p>
+An ionic bond involves transfer of electrons and attraction
+between oppositely charged ions.
+</p>
+
+<h3>Covalent Bond</h3>
+<p>
+A covalent bond involves sharing of electron pairs.
+</p>
+
+<div class="note">
+💡 Bonding helps atoms achieve more stable electron arrangements.
+</div>
+`
+},
+
+{
+id:"mole",
+subject:"chemistry",
+title:"⚖️ Mole Concept",
+keywords:"mole molar mass chemistry calculations",
+content:`
+<h3>Introduction</h3>
+<p>
+The mole is a counting unit used in chemistry for extremely
+large numbers of particles.
+</p>
+
+<div class="formula">
+1 mole = 6.022 × 10²³ particles
+</div>
+
+<h3>Molar Mass</h3>
+<p>
+Molar mass is the mass of one mole of a substance.
+</p>
+
+<div class="formula">
+Number of moles = Given mass / Molar mass
+</div>
+`
+},
+
+{
+id:"states",
+subject:"chemistry",
+title:"💧 States of Matter",
+keywords:"solid liquid gas matter chemistry",
+content:`
+<h3>Three Common States</h3>
+
+<ul>
+<li>Solid</li>
+<li>Liquid</li>
+<li>Gas</li>
+</ul>
+
+<p>
+Solids have a definite shape and volume.
+Liquids have definite volume but take the shape of their container.
+Gases have neither a definite shape nor a definite volume.
+</p>
+
+<div class="note">
+💡 The state of matter depends on particle arrangement,
+energy and intermolecular forces.
+</div>
+`
+},
+
+{
+id:"thermo",
+subject:"chemistry",
+title:"🔥 Thermodynamics",
+keywords:"thermodynamics heat energy chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+Thermodynamics studies energy changes associated with
+physical and chemical processes.
+</p>
+
+<h3>System and Surroundings</h3>
+<p>
+The system is the part being studied while everything
+outside it is called the surroundings.
+</p>
+
+<div class="formula">
+ΔU = q + w
+</div>
+
+<p>
+This represents the first law of thermodynamics under
+a common sign convention.
+</p>
+`
+},
+
+{
+id:"equilibrium",
+subject:"chemistry",
+title:"⚖️ Chemical Equilibrium",
+keywords:"equilibrium reversible reaction chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+Chemical equilibrium occurs in a reversible reaction
+when the forward and reverse reaction rates become equal.
+</p>
+
+<p>
+The concentrations of reactants and products remain
+constant at equilibrium, although reactions continue microscopically.
+</p>
+
+<div class="note">
+💡 Equilibrium is dynamic, not a state where reactions stop.
+</div>
+`
+},
+
+{
+id:"redox",
+subject:"chemistry",
+title:"🔄 Redox Reactions",
+keywords:"redox oxidation reduction chemistry",
+content:`
+<h3>Oxidation</h3>
+<p>
+Oxidation can be described as loss of electrons,
+increase in oxidation number or addition of oxygen
+depending on the context.
+</p>
+
+<h3>Reduction</h3>
+<p>
+Reduction can involve gain of electrons or decrease
+in oxidation number.
+</p>
+
+<div class="formula">
+Oxidation + Reduction = Redox reaction
+</div>
+`
+},
+
+{
+id:"organic",
+subject:"chemistry",
+title:"🧪 Organic Chemistry",
+keywords:"organic carbon hydrocarbons chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+Organic chemistry primarily deals with carbon-containing
+compounds and their reactions.
+</p>
+
+<h3>Hydrocarbons</h3>
+<p>
+Hydrocarbons contain only carbon and hydrogen.
+</p>
+
+<ul>
+<li>Alkanes</li>
+<li>Alkenes</li>
+<li>Alkynes</li>
+</ul>
+
+<div class="note">
+💡 Carbon can form many compounds because of its
+ability to form strong covalent bonds and chains.
+</div>
+`
+},
+
+{
+id:"reactions",
+subject:"chemistry",
+title:"🔥 Chemical Reactions",
+keywords:"reaction reactant product balancing chemistry",
+content:`
+<h3>Introduction</h3>
+<p>
+A chemical reaction transforms reactants into products.
+</p>
+
+<div class="formula">
+Reactants → Products
+</div>
+
+<h3>Evidence</h3>
+<ul>
+<li>Colour change</li>
+<li>Gas formation</li>
+<li>Temperature change</li>
+<li>Precipitate formation</li>
+</ul>
+
+<p>
+Chemical equations are balanced because atoms are conserved.
+</p>
+`
+},
+
+
+/* COMPUTER 31-40 */
+
+{
+id:"html",
+subject:"computer",
+title:"🌐 HTML",
+keywords:"html webpage website heading paragraph tag",
+content:`
+<h3>What is HTML?</h3>
+<p>
+HTML stands for HyperText Markup Language.
+It provides the structure of webpages.
+</p>
+
+<h3>Heading</h3>
+
+<div class="formula">
+&lt;h1&gt;Hello World&lt;/h1&gt;
+</div>
+
+<h3>Paragraph</h3>
+
+<div class="formula">
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+</div>
+
+<h3>Button</h3>
+
+<div class="formula">
+&lt;button&gt;Click Me&lt;/button&gt;
+</div>
+
+<h3>Link</h3>
+
+<div class="formula">
+&lt;a href="https://example.com"&gt;Open&lt;/a&gt;
+</div>
+
+<div class="note">
+💡 HTML = structure.
+</div>
+`
+},
+
+{
+id:"css",
+subject:"computer",
+title:"🎨 CSS",
+keywords:"css style color background design website",
+content:`
+<h3>What is CSS?</h3>
+<p>
+CSS stands for Cascading Style Sheets.
+It controls the appearance of HTML elements.
+</p>
+
+<h3>Color</h3>
+
+<div class="formula">
+color: blue;
+</div>
+
+<h3>Background</h3>
+
+<div class="formula">
+background: black;
+</div>
+
+<h3>Spacing</h3>
+
+<div class="formula">
+padding: 20px;<br>
+margin: 20px;
+</div>
+
+<p>
+CSS can also control layouts, fonts, borders,
+animations and responsive designs.
+</p>
+
+<div class="note">
+💡 CSS = appearance and design.
+</div>
+`
+},
+
+{
+id:"javascript",
+subject:"computer",
+title:"⚙️ JavaScript",
+keywords:"javascript js programming function variable website",
+content:`
+<h3>Introduction</h3>
+<p>
+JavaScript is a programming language used to make
+webpages interactive.
+</p>
+
+<h3>Variables</h3>
+
+<div class="formula">
+let age = 16;
+</div>
+
+<h3>Function</h3>
+
+<div class="formula">
+function hello(){<br>
+alert("Hello");<br>
 }
+</div>
+
+<h3>Interaction</h3>
+<p>
+JavaScript can react to button clicks, change webpage
+content, perform calculations and manage application logic.
+</p>
+
+<div class="note">
+💡 JavaScript = behaviour and interaction.
+</div>
+`
+},
+
+{
+id:"variables",
+subject:"computer",
+title:"📦 Variables",
+keywords:"variable let const programming javascript",
+content:`
+<h3>What is a Variable?</h3>
+<p>
+A variable stores a value that a program can use.
+</p>
+
+<div class="formula">
+let name = "Student";
+</div>
+
+<div class="formula">
+let score = 95;
+</div>
+
+<p>
+Variables can store numbers, text and many other types
+of data.
+</p>
+
+<h3>const</h3>
+
+<div class="formula">
+const pi = 3.14;
+</div>
+
+<p>
+The const keyword is used when a variable should not
+be reassigned.
+</p>
+`
+},
+
+{
+id:"conditions",
+subject:"computer",
+title:"🔀 Conditions",
+keywords:"if else condition programming javascript",
+content:`
+<h3>Introduction</h3>
+<p>
+Conditional statements allow a program to make decisions.
+</p>
+
+<div class="formula">
+if(score >= 40){<br>
+&nbsp;&nbsp;pass = true;<br>
+}
+</div>
+
+<p>
+An if statement runs code when its condition is true.
+An else statement can handle the alternative case.
+</p>
+
+<div class="note">
+💡 Conditions are essential for creating intelligent program behaviour.
+</div>
+`
+},
+
+{
+id:"loops",
+subject:"computer",
+title:"🔁 Loops",
+keywords:"loop for while programming javascript",
+content:`
+<h3>Introduction</h3>
+<p>
+Loops repeat a block of code multiple times.
+</p>
+
+<h3>For Loop</h3>
+
+<div class="formula">
+for(let i=0;i&lt;5;i++){<br>
+console.log(i);<br>
+}
+</div>
+
+<p>
+Loops are useful when the same operation needs
+to be performed repeatedly.
+</p>
+`
+},
+
+{
+id:"functions",
+subject:"computer",
+title:"🛠️ Functions",
+keywords:"function programming javascript method",
+content:`
+<h3>Introduction</h3>
+<p>
+A function is a reusable block of code designed to
+perform a particular task.
+</p>
+
+<div class="formula">
+function add(a,b){<br>
+return a+b;<br>
+}
+</div>
+
+<p>
+Functions improve organization and reduce repeated code.
+</p>
+
+<div class="note">
+💡 Give functions meaningful names so your code is easier to understand.
+</div>
+`
+},
+
+{
+id:"arrays",
+subject:"computer",
+title:"📋 Arrays",
+keywords:"array list programming javascript",
+content:`
+<h3>Introduction</h3>
+<p>
+An array stores multiple values in a single variable.
+</p>
+
+<div class="formula">
+let fruits = ["Apple","Mango","Banana"];
+</div>
+
+<p>
+Array elements can be accessed using their index.
+In JavaScript, indexing normally starts at zero.
+</p>
+
+<div class="formula">
+fruits[0]
+</div>
+
+<p>
+The above expression gives the first element.
+</p>
+`
+},
+
+{
+id:"dom",
+subject:"computer",
+title:"🖥️ DOM",
+keywords:"dom document object model javascript html",
+content:`
+<h3>What is DOM?</h3>
+<p>
+DOM stands for Document Object Model.
+It represents the structure of an HTML document as
+objects that JavaScript can interact with.
+</p>
+
+<div class="formula">
+document.getElementById("title")
+</div>
+
+<p>
+JavaScript can use the DOM to change text, styles,
+attributes and other elements on a webpage.
+</p>
+
+<div class="note">
+💡 DOM is what allows JavaScript to dynamically change a webpage.
+</div>
+`
+},
+
+{
+id:"responsive",
+subject:"computer",
+title:"📱 Responsive Design",
+keywords:"responsive mobile website screen css design",
+content:`
+<h3>Introduction</h3>
+<p>
+Responsive design makes a website adapt to different
+screen sizes such as phones, tablets and computers.
+</p>
+
+<h3>Why It Matters</h3>
+<p>
+A website that looks good on a computer may not automatically
+look good on a phone. Responsive design solves this problem.
+</p>
+
+<h3>Common Techniques</h3>
+<ul>
+<li>Flexible layouts</li>
+<li>Relative units</li>
+<li>Media queries</li>
+<li>Responsive images</li>
+</ul>
+
+<div class="note">
+💡 Always test a website on a phone before publishing it.
+</div>
+`
+}
+
+];
+
+
+/* =========================================
+   QUIZ - 20 QUESTIONS
+========================================= */
+
+const questions=[
+
+{
+q:"What is the determinant of [[2,3],[4,5]]?",
+a:["2","-2","10","22"],
+c:1
+},
+
+{
+q:"What is sin 90°?",
+a:["0","1/2","1","-1"],
+c:2
+},
+
+{
+q:"What is the derivative of x²?",
+a:["x","2x","x²","2"],
+c:1
+},
+
+{
+q:"What is the integral of x²?",
+a:["2x","x³/3 + C","x²/2","3x²"],
+c:1
+},
+
+{
+q:"What is the probability of getting heads from a fair coin?",
+a:["0","1/4","1/2","1"],
+c:2
+},
+
+{
+q:"Which is the SI unit of force?",
+a:["Joule","Newton","Watt","Pascal"],
+c:1
+},
+
+{
+q:"Newton's second law is:",
+a:["F=ma","P=VI","V=IR","E=mc²"],
+c:0
+},
+
+{
+q:"What is the formula for kinetic energy?",
+a:["mgh","½mv²","ma","Fs"],
+c:1
+},
+
+{
+q:"What is momentum?",
+a:["ma","mv","mgh","F/s"],
+c:1
+},
+
+{
+q:"Which equation is Ohm's law?",
+a:["V=IR","F=ma","P=mv","Q=mc"],
+c:0
+},
+
+{
+q:"Which particle has a positive charge?",
+a:["Electron","Neutron","Proton","Photon"],
+c:2
+},
+
+{
+q:"Atomic number represents the number of:",
+a:["Neutrons","Protons","Electrons + neutrons","Shells"],
+c:1
+},
+
+{
+q:"One mole contains approximately:",
+a:["6.022×10²³ particles","100 particles","1000 particles","10 particles"],
+c:0
+},
+
+{
+q:"Which bond involves sharing of electrons?",
+a:["Ionic","Covalent","Metallic only","Nuclear"],
+c:1
+},
+
+{
+q:"What are substances before a reaction called?",
+a:["Products","Reactants","Solutions","Mixtures"],
+c:1
+},
+
+{
+q:"HTML mainly provides:",
+a:["Structure","Electricity","Database","Internet"],
+c:0
+},
+
+{
+q:"Which language mainly controls webpage styling?",
+a:["HTML","CSS","JavaScript","Python"],
+c:1
+},
+
+{
+q:"Which language adds webpage interaction?",
+a:["HTML","CSS","JavaScript","SQL"],
+c:2
+},
+
+{
+q:"Which keyword declares a JavaScript variable?",
+a:["let","html","style","tag"],
+c:0
+},
+
+{
+q:"What does DOM stand for?",
+a:[
+"Data Object Machine",
+"Document Object Model",
+"Digital Online Method",
+"Document Output Machine"
+],
+c:1
+}
+
+];
+
+
+/* =========================================
+   FUNCTIONS
+========================================= */
+
+let completed=
+JSON.parse(localStorage.getItem("studyhubCompleted")) || [];
+
+let currentTopic=null;
+let questionIndex=0;
+let quizScore=0;
+let answered=false;
+
+
+function showPage(page){
+
+document.querySelectorAll("section")
+.forEach(section=>{
+section.classList.add("hidden");
+});
+
+document.getElementById(page)
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+updateProgress();
+
+}
+
+
+function openTopic(id){
+
+let topic=
+topics.find(t=>t.id===id);
+
+if(!topic)return;
+
+currentTopic=id;
+
+document.getElementById("chapterTitle")
+.innerHTML=topic.title;
+
+document.getElementById("chapterContent")
+.innerHTML=
+`
+<span class="badge">${topic.subject.toUpperCase()}</span>
+${topic.content}
+`;
+
+showPage("chapter");
+
+}
+
+
+function completeChapter(){
+
+if(!currentTopic)return;
+
+if(!completed.includes(currentTopic)){
+
+completed.push(currentTopic);
+
+localStorage.setItem(
+"studyhubCompleted",
+JSON.stringify(completed)
+);
+
+alert("✅ Chapter completed!");
+
+}else{
+
+alert("This chapter is already completed.");
+
+}
+
+updateProgress();
+
+}
+
+
+function updateProgress(){
+
+document.getElementById("completedCount")
+.innerText=completed.length;
+
+document.getElementById("totalCount")
+.innerText=topics.length;
+
+let percentage=
+(completed.length/topics.length)*100;
+
+document.getElementById("progressBar")
+.style.width=percentage+"%";
+
+}
+
+
+function searchTopics(){
+
+let query=
+document.getElementById("searchBox")
+.value
+.toLowerCase()
+.trim();
+
+let results=
+document.getElementById("searchResults");
+
+results.innerHTML="";
+
+if(query==="")return;
+
+let found=
+topics.filter(topic=>{
+
+let text=
+(
+topic.title+
+" "+
+topic.keywords+
+" "+
+topic.content
+)
+.toLowerCase();
+
+return text.includes(query);
+
+});
+
+if(found.length===0){
+
+results.innerHTML=
+"<p>No topic found. Try another keyword.</p>";
+
+return;
+
+}
+
+found.forEach(topic=>{
+
+let div=
+document.createElement("div");
+
+div.className="searchResult";
+
+div.innerHTML=
+`
+<b>${topic.title}</b>
+<br>
+<span class="small">
+${topic.subject.toUpperCase()} • Tap to open
+</span>
+`;
+
+div.onclick=
+function(){
+
+openTopic(topic.id);
+
+};
+
+results.appendChild(div);
+
+});
+
+}
+
+
+function toggleDark(){
+
+document.body
+.classList
+.toggle("dark");
+
+}
+
+
+function loadTopics(){
+
+let subjects={
+math:"mathTopics",
+physics:"physicsTopics",
+chemistry:"chemistryTopics",
+computer:"computerTopics"
+};
+
+for(let subject in subjects){
+
+let container=
+document.getElementById(
+subjects[subject]
+);
+
+let list=
+topics.filter(t=>t.subject===subject);
+
+list.forEach(topic=>{
+
+let div=
+document.createElement("div");
+
+div.className="chapter";
+
+div.innerHTML=
+`
+<h3>${topic.title}</h3>
+<span class="small">
+${topic.keywords}
+</span>
+`;
+
+div.onclick=
+function(){
+
+openTopic(topic.id);
+
+};
+
+container.appendChild(div);
+
+});
+
+}
+
+}
+
+
+/* =========================================
+   QUIZ
+========================================= */
+
+function startQuiz(){
+
+questionIndex=0;
+
+quizScore=0;
+
+answered=false;
+
+showPage("quiz");
+
+loadQuestion();
+
+}
+
+
+function loadQuestion(){
+
+let q=
+questions[questionIndex];
+
+answered=false;
+
+document.getElementById(
+"questionNumber"
+).innerText=
+"Question "+
+(questionIndex+1)+
+" / "+
+questions.length;
+
+document.getElementById(
+"quizScore"
+).innerText=
+"Score: "+
+quizScore;
+
+document.getElementById(
+"question"
+).innerText=q.q;
+
+document.getElementById(
+"feedback"
+).innerText="";
+
+document.getElementById(
+"nextButton"
+).classList.add("hidden");
+
+document.getElementById(
+"quizResult"
+).innerHTML="";
+
+let options=
+document.getElementById("options");
+
+options.innerHTML="";
+
+q.a.forEach((answer,index)=>{
+
+let button=
+document.createElement("button");
+
+button.className="quizOption";
+
+button.innerText=
+String.fromCharCode(65+index)+
+") "+
+answer;
+
+button.onclick=
+function(){
+
+selectAnswer(index);
+
+};
+
+options.appendChild(button);
+
+});
+
+}
+
+
+function selectAnswer(index){
+
+if(answered)return;
+
+answered=true;
+
+let q=
+questions[questionIndex];
+
+let buttons=
+document.querySelectorAll(".quizOption");
+
+buttons.forEach(button=>{
+button.disabled=true;
+});
+
+if(index===q.c){
+
+buttons[index]
+.classList
+.add("correct");
+
+quizScore++;
+
+document.getElementById("feedback")
+.innerText="✅ Correct!";
+
+}else{
+
+buttons[index]
+.classList
+.add("wrong");
+
+buttons[q.c]
+.classList
+.add("correct");
+
+document.getElementById("feedback")
+.innerText=
+"❌ Wrong. Correct answer: "+
+q.a[q.c];
+
+}
+
+document.getElementById("quizScore")
+.innerText=
+"Score: "+
+quizScore;
+
+document.getElementById("nextButton")
+.classList.remove("hidden");
+
+}
+
+
+function nextQuestion(){
+
+questionIndex++;
+
+if(questionIndex<questions.length){
+
+loadQuestion();
+
+}else{
+
+finishQuiz();
+
+}
+
+}
+
+
+function finishQuiz(){
+
+let percentage=
+(quizScore/questions.length)*100;
+
+document.getElementById("questionNumber")
+.innerText="Finished 🎉";
+
+document.getElementById("quizScore")
+.innerText="Score: "+quizScore;
+
+document.getElementById("question")
+.innerText="Quiz Complete!";
+
+document.getElementById("options")
+.innerHTML="";
+
+document.getElementById("feedback")
+.innerHTML=
+`
+<div class="score">
+${quizScore}/${questions.length}
+<br>
+${percentage}% 
+</div>
+`;
+
+document.getElementById("nextButton")
+.classList.add("hidden");
+
+let button=
+document.createElement("button");
+
+button.className="primary";
+
+button.innerText="🔄 Try Again";
+
+button.onclick=startQuiz;
+
+document.getElementById("quizResult")
+.appendChild(button);
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadTopics();
+
+updateProgress();
+
 </script>
 
 </body>
-</html>
+    </html>
